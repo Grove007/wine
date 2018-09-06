@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>酒</title>
+    <link rel="stylesheet" href="css/index.css">
+ 
+    <script>
+        var pixelRatio = 1 / window.devicePixelRatio; //还原设备的真实分辨率；
+        //devicePixelRatio设备的像素比；
+        document.write('<meta name="viewport" content="width=device-width,initial-scale=' + pixelRatio + ',minimum-scale=' + pixelRatio + ',maximum-scale=' + pixelRatio + '" />');
+        var html = document.getElementsByTagName('html')[0];
+        var pageWidth = html.getBoundingClientRect().width;
+        html.style.fontSize = pageWidth / 10 + "px";
+    </script>
+</head>
+<body>
+    <header>
+        <span></span>
+        <span>中华国酱酒</span>
+        <span><img src="img/head.png" alt=""></span>
+    </header>
+    <section>
+        <img src="img/icon1.png" alt="">
+        <img src="img/icon2.png" alt="">
+        <img src="img/icon3.png" alt="">
+        <img src="img/icon4.png" alt="">
+        <img src="img/icon5.png" alt="">
+        <img src="img/icon6.png" alt="">
+        <img src="img/icon7.png" alt="">
+        <img src="img/icon8.png" alt="">
+    </section>
+    <form action="" class="form">
+        <p>姓名<span>*</span></p>
+        <input type="text" class="username">
+        <p>电话<span>*</span></p>
+        <input type="text" class="userMobile">
+        <p>地区<span>*</span></p>
+        <input type="text" class="address">
+        <p>留言<span>*</span></p>
+        <textarea cols="30" rows="5" class="userMassage"></textarea>
+        <button type="button" id="btn">提交</button>
+    </form>
+    <div class="pic">
+    <p>扫一扫，加我了解吧</p>
+    	<img src="img/wechat.jpg" alt="">
+    </div>
+    <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="contact.html">联系我们</a></li>
+    </ul>
+    <footer>
+        豫ICP备17033667号
+    </footer>
+    <div class="fixed">
+       <a href="tel:19928375952"><img src="img/tel.png" alt=""></a> 
+    </div>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+    $('#btn').click(function(){
+    	
+        var parms={
+            "username":$('.username').val(),
+            "userMobile":$('.userMobile').val(),
+            "address":$('.address').val(),
+            "userMassage":$('.userMassage').val()
+        };
+        console.log(parms);
+        $.ajax({
+        	type:'POST',
+        	url:'http://www.lanhuasj.com.cn/blue-hua/app/thirduser/save',
+        	contentType:"application/json",
+        	data:JSON.stringify(parms),
+        	success:function(data){
+        		console.log(data);
+                console.log("执行成功");
+            },error:function(data){
+                console.log(data);
+                onsole.log("报错了，小主你再检查下");
+            }
+       	});
+   });
+
+    </script>
+
+</body>
+</html>
